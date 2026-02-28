@@ -1,0 +1,8 @@
+<svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="markTitle">
+  <title id="markTitle">sam-com mark</title>
+  <rect x="4" y="4" width="56" height="56" rx="16" fill="#111827"/>
+  <path d="M16 22H23L27 40H45" stroke="#F59E0B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M28 31H44L41 40H31" stroke="#34D399" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="31" cy="48" r="3.5" fill="#F9FAFB"/>
+  <circle cx="42" cy="48" r="3.5" fill="#F9FAFB"/>
+</svg>
