@@ -13,12 +13,30 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(
-  cors({
-    origin: [process.env.CLIENT_URL,"https://sam-com-yd3o.vercel.app/login"],
-    credentials: true
-  })
-);
+const allowedOrigins = [process.env.CLIENT_URL, "http://localhost:5173"].filter(Boolean);
+const corsOptions = {
+  origin(origin, callback) {
+    // Allow non-browser requests (no Origin header)
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    const isExactAllowed = allowedOrigins.includes(origin);
+    const isVercelPreview = /^https:\/\/sam-com-.*\.vercel\.app$/.test(origin);
+
+    if (isExactAllowed || isVercelPreview) {
+      return callback(null, true);
+    }
+
+    return callback(new Error(`CORS blocked for origin: ${origin}`));
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 app.use(express.json());
 app.use(
